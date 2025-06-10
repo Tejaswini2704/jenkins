@@ -1,5 +1,5 @@
 # setup 
-## Launch tow sever with following configuration.
+## Launch two sever with following configuration.
 - **AMI** - Ubuntu
 - **Instance Type** - t2.medium.
 - **Security Group** - add port 22 (ssh) and 8080
