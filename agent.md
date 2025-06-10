@@ -74,5 +74,11 @@ chmod 777 jenkins
 - host key verification strategy  : non-verifying verification strategy
 
 ![Screenshot 2025-06-06 162340](https://github.com/user-attachments/assets/68617e56-0a39-4dfe-8ad3-a8f7f253b9f3)
-![Screenshot 2025-06-06 163034](https://github.com/user-attachments/assets/78e66cab-9924-437f-b3a4-985a16845b1b)
+![Screenshot 2025-06-10 113546](https://github.com/user-attachments/assets/f6243440-6d44-45be-9a98-354c439bc951)
+
+- check on agent server.
+![Screenshot 2025-06-10 113943](https://github.com/user-attachments/assets/6f84993f-065a-4525-99a2-3f067b5ded01)
+![Screenshot 2025-06-10 113957](https://github.com/user-attachments/assets/09f35e52-4169-4458-95a0-d1855418796d)
+
+
 
