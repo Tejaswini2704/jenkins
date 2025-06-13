@@ -35,3 +35,5 @@ sudo apt-get install jenkins -y
 -  click new item
   - name : jenkins-s3
   - type: pipeline  
+- pipeline code:
+```
