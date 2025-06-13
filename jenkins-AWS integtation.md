@@ -16,9 +16,15 @@ sudo apt-get install jenkins -y
 ## Plugins
 - go to manage jenkins -> plugins -> available plugins
 - install following plugins
-  - AWS credentials
-  - S3 publisher
-  - Maven integration
+```
+AWS credentials
+```
+```
+S3 publisher
+```
+```
+Maven integration
+```
 - go to manage jenkins -> Tools
 - add Maven
   - name: maven
@@ -36,4 +42,53 @@ sudo apt-get install jenkins -y
   - name : jenkins-s3
   - type: pipeline  
 - pipeline code:
+- stage 1  :code-pull
 ```
+pipeline{
+    agent any
+    tools{
+        maven 'maven'
+    }
+    
+    stages {
+        stage ('code-pull'){
+            steps{
+                 git branch: 'main', url: 'https://github.com/abhipraydhoble/Student-App-Code.git'
+            }
+        }
+    }
+    
+}
+```
+- apply,save and build now.
+- note for steps code use pipeline syntax to genrate the code.
+   - sample : Git:git
+   - repo URL : ``https://github.com/abhipraydhoble/Student-App-Code.git``
+   - branch : main.
+   - genrate the code and paste it on steps section.
+- stage 2 : code-build
+- now now configure the code.
+- make following changes in the code.
+```
+pipeline{
+    agent any
+    tools{
+        maven 'maven'
+    }
+    
+    stages {
+        stage ('code-pull'){
+            steps{
+                 git branch: 'main', url: 'https://github.com/abhipraydhoble/Student-App-Code.git'
+            }
+        }
+        stage ('code-build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+    }
+    
+}
+```
+- 
