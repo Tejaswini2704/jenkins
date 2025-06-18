@@ -17,6 +17,9 @@ sudo apt-get install jenkins -y
 - go to manage jenkins -> plugins -> available plugins
 - install following plugins
 ```
+stage view
+```
+```
 AWS credentials
 ```
 ```
