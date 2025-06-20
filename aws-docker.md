@@ -102,6 +102,15 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
 ```
+ ## install docker 
+ ```
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker ubuntu
+newgrp docker
+sudo chmod 777 /var/run/docker.sock
+```
 ## back to jenkins
 - configure the pipeline
 - add environment variables
@@ -137,7 +146,7 @@ pipeline {
         stage('upload artifacts'){
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                 sh 'aws s3 cp ${warFile} s3://${S3_BUCKET}/artifacts/ --region ${AWS_REGION}'
+                 sh 'aws s3 cp ${warFile} s3://${S3_BUCKET}/ --region ${AWS_REGION}'
               }
             }
         }
@@ -150,3 +159,15 @@ pipeline {
         }
     }
 }
+```
+- apply,save and build now.
+![Screenshot 2025-06-20 223405](https://github.com/user-attachments/assets/46aa19a4-39b2-4a71-bfe9-690da526e911)
+- in our instance you will see a running container
+![Screenshot 2025-06-20 223944](https://github.com/user-attachments/assets/3560ef45-25e1-4584-96b2-ca2fa9031ea6)
+
+- now back to EC2 and edit the security group of our instnace.
+   - add 8089 port in inbound rule.
+- now cpoy the instance ip and browse it with "8089" port number eg ``13.229.95.14:8089``
+- you will see following webpage
+![Screenshot 2025-06-20 224156](https://github.com/user-attachments/assets/6322160b-f064-4ca4-b420-9ec65669600b)
+
