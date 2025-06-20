@@ -71,6 +71,11 @@ ptpeline {
                 git branch: 'main', url: 'https://github.com/abhipraydhoble/Project-InsureMe.git'
             }
         }
+          stage('code-build'){
+           steps{
+               sh 'mvn clean package'
+           }
+       }
     }
 }
 ```
