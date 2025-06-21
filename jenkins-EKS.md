@@ -46,26 +46,38 @@ terraform
    - type: pipeline
 ```
 pipeline{
-    agent any
+    agent any 
     tools{
-        terraform 'terraform'
+        terraform 'tf'
     }
+    
     stages{
-        stage ('code-pull'){
+        stage('code-pull'){
             steps{
-                git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/abhipraydhoble/jenkins-tf.git'
+                git branch: 'main', url: 'https://github.com/abhipraydhoble/jenkins-tf.git'
             }
         }
-        stage ('eks-cluster'){
-           steps{
+        stage('eks-cluster'){
+            steps{
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-    sh 'terraform init'
-    sh 'terraform validate'
-    sh 'terraform plan'
-    sh 'terraform apply -auto-approve'
-}
-           }
+                  sh 'terraform init'
+                  sh 'terraform validate'
+                  sh 'terraform plan'
+                  sh 'terraform apply -auto-approve'
+                 }
+            }
         }
     }
 }
 ```
+![Screenshot 2025-06-21 123228](https://github.com/user-attachments/assets/84f5d335-ea71-4377-aa7b-368db193d389)
+ - now to destroy the cluster add another stage
+```
+stage('tf-destroy'){
+            steps{
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                 sh 'terraform destroy -auto-approve'
+                }
+            }
+```
+
