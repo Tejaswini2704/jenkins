@@ -17,10 +17,13 @@ sudo apt-get install jenkins -y
 - install folowing plugins
 - go to manage jenkins -> plugins -> available plugins
 ```
+Stage view
+```
+```
 aws credentials
 ```
 ```
-Pipeline: AWS StepsVersion
+Pipeline: AWS Steps
 ```
 ```
 terraform
